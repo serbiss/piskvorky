@@ -178,3 +178,16 @@ footer {
 	width: 100%;
 }
 
+#board {
+	display: flex;
+	flex-direction: column;
+}
+.row {
+	display: flex;
+}
+.cell {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #000;
+}
+
