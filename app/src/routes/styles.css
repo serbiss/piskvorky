@@ -30,7 +30,6 @@ body {
 		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
 }
 
-h1,
 h2,
 p {
 	font-weight: 400;
@@ -56,17 +55,6 @@ h1 {
 
 h2 {
 	font-size: 1rem;
-}
-
-pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--color-text);
 }
 
 .text-column {
@@ -105,3 +93,88 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+svg {
+	width: 2em;
+	height: 3em;
+	display: block;
+}
+
+path {
+	fill: var(--background);
+}
+
+ul {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	height: 3em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style: none;
+	background: var(--background);
+	background-size: contain;
+}
+
+li {
+	position: relative;
+	height: 100%;
+}
+
+li[aria-current='page']::before {
+	--size: 6px;
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 0;
+	left: calc(50% - var(--size));
+	border: var(--size) solid transparent;
+	border-top: var(--size) solid var(--color-theme-1);
+}
+
+a:hover {
+	color: var(--color-theme-1);
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 0.6;
+}
+
+h1 {
+	width: 100%;
+	margin-top: 0px;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	width: 100%;
+	max-width: 64rem;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
