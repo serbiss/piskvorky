@@ -179,15 +179,26 @@ footer {
 }
 
 #board {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
+
 .row {
-	display: flex;
+    display: flex;
 }
+
 .cell {
-	width: 100px;
-	height: 100px;
-	border: 1px solid #000;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem; /* velikost symbolu */
 }
+
+.symbol {
+    display: block;
+}
+
 
