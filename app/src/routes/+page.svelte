@@ -1,5 +1,9 @@
 <script>
-    let board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => null)); // 10x10 pole s hodnotami null
+    let board = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+    ];
     let currentPlayer = 'X';
 
     async function handleCellClick(row, col) {
@@ -18,16 +22,19 @@
     }
 
     function checkWinner(board) {
-        const lines = [];
-        for (let i = 0; i < 10; i++) {
+        const lines = [
             // Vodorovné řádky
-            lines.push([[i, 0], [i, 1], [i, 2]]);
+            [[0, 0], [0, 1], [0, 2]],
+            [[1, 0], [1, 1], [1, 2]],
+            [[2, 0], [2, 1], [2, 2]],
             // Svislé řádky
-            lines.push([[0, i], [1, i], [2, i]]);
-        }
-        // Diagonální řádky
-        lines.push([[0, 0], [1, 1], [2, 2]]);
-        lines.push([[0, 2], [1, 1], [2, 0]]);
+            [[0, 0], [1, 0], [2, 0]],
+            [[0, 1], [1, 1], [2, 1]],
+            [[0, 2], [1, 2], [2, 2]],
+            // Diagonální řádky
+            [[0, 0], [1, 1], [2, 2]],
+            [[0, 2], [1, 1], [2, 0]]
+        ];
 
         for (let line of lines) {
             const [a, b, c] = line;
@@ -40,7 +47,11 @@
     }
 
     function restartGame() {
-        board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => null));
+        board = [
+            [null, null, null],
+            [null, null, null],
+            [null, null, null]
+        ];
         currentPlayer = 'X';
     }
 </script>
@@ -63,3 +74,4 @@
         {/each}
     </div>
 </section>
+
