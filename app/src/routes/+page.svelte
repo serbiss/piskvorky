@@ -5,6 +5,7 @@
         [null, null, null]
     ];
     let currentPlayer = 'X';
+    let scores = { X: 0, O: 0 }; // Skóre hráčů
 
     async function handleCellClick(row, col) {
         if (!board[row][col]) {
@@ -12,8 +13,10 @@
             const winner = checkWinner(board);
             if (winner) {
                 board[row][col] = winner;
+                scores[winner]++; // Zvýšení skóre vítěze
+                updateScores(); // Aktualizace zobrazení skóre
                 await new Promise(resolve => setTimeout(resolve, 100));
-                alert(`Hráč ${winner} vyhrál! Klikněte na OK pro restart hry.`);
+                alert(`Hráč ${winner} vyhrál! Skóre: X(${scores.X}) - O(${scores.O}). Klikněte na OK pro restart hry.`);
                 restartGame(); // Restart hry
             } else {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
@@ -54,6 +57,11 @@
         ];
         currentPlayer = 'X';
     }
+
+    function updateScores() {
+        document.getElementById('scoreX').textContent = scores.X;
+        document.getElementById('scoreO').textContent = scores.O;
+    }
 </script>
 
 <section>
@@ -73,5 +81,12 @@
             </div>
         {/each}
     </div>
+    <div>
+        <p>Skóre:</p>
+        <p>Hráč X: <span id="scoreX">0</span></p>
+        <p>Hráč O: <span id="scoreO">0</span></p>
+    </div>
 </section>
+
+
 
