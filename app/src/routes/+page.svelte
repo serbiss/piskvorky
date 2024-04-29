@@ -6,11 +6,43 @@
     ];
     let currentPlayer = 'X';
     
-    function handleCellClick(row, col) {
+    async function handleCellClick(row, col) {
         if (!board[row][col]) {
             board[row][col] = currentPlayer;
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            const winner = checkWinner(board);
+            if (winner) {
+                board[row][col] = winner;
+                await new Promise(resolve => setTimeout(resolve, 100));
+                alert(`Hráč ${winner} vyhrál!`);
+            } else {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
         }
+    }
+
+    function checkWinner(board) {
+        const lines = [
+            // Vodorovné řádky
+            [[0, 0], [0, 1], [0, 2]],
+            [[1, 0], [1, 1], [1, 2]],
+            [[2, 0], [2, 1], [2, 2]],
+            // Svislé řádky
+            [[0, 0], [1, 0], [2, 0]],
+            [[0, 1], [1, 1], [2, 1]],
+            [[0, 2], [1, 2], [2, 2]],
+            // Šikmé řádky
+            [[0, 0], [1, 1], [2, 2]],
+            [[0, 2], [1, 1], [2, 0]]
+        ];
+
+        for (let line of lines) {
+            const [a, b, c] = line;
+            if (board[a[0]][a[1]] && board[a[0]][a[1]] === board[b[0]][b[1]] && board[a[0]][a[1]] === board[c[0]][c[1]]) {
+                return board[a[0]][a[1]]; 
+            }
+        }
+
+        return null; 
     }
 </script>
 
