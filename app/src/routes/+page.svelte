@@ -9,7 +9,8 @@
             if (winner) {
                 board[row][col] = winner;
                 await new Promise(resolve => setTimeout(resolve, 100));
-                alert(`Hráč ${winner} vyhrál!`);
+                alert(`Hráč ${winner} vyhrál! Klikněte na OK pro restart hry.`);
+                restartGame(); // Restart hry
             } else {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             }
@@ -36,6 +37,11 @@
         }
 
         return null; 
+    }
+
+    function restartGame() {
+        board = Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => null));
+        currentPlayer = 'X';
     }
 </script>
 
